@@ -10,69 +10,53 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.investor.application;
+package acme.features.investor.investmentRound;
 
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.application.Application;
+import acme.entities.investmentRound.InvestmentRound;
 import acme.entities.roles.Investor;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Principal;
 import acme.framework.services.AbstractShowService;
 
 @Service
-public class InvestorApplicationShowService implements AbstractShowService<Investor, Application> {
+public class InvestorInvestmentRoundShowService implements AbstractShowService<Investor, InvestmentRound> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	InvestorApplicationRepository repository;
+	InvestorInvestmentRoundRepository repository;
 
 
 	@Override
-	public boolean authorise(final Request<Application> request) {
+	public boolean authorise(final Request<InvestmentRound> request) {
 		assert request != null;
-		
-		boolean result;
-		int applicationId;
-		Application ap;
-		Investor i;
-		Principal principal;
-		
-		applicationId = request.getModel().getInteger("id");
-		ap = this.repository.findOne(applicationId);
-		i = ap.getInvestor();
-		principal = request.getPrincipal();
-		result = i.getUserAccount().getId() == principal.getAccountId();
-		
-		
-		
 
-		return result;
+		return true;
 	}
 
 
 
 	@Override
-	public void unbind(final Request<Application> request, final Application entity, final Model model) {
+	public void unbind(final Request<InvestmentRound> request, final InvestmentRound entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "ticker", "dateOfCreation", "statement", "moneyOffer");
+		request.unbind(entity, model, "ticker", "creation", "round", "title", "description", "amount", "optional","id");
 
 		
 	}
 
 	@Override
-	public Application findOne(final Request<Application> request) {
+	public InvestmentRound findOne(final Request<InvestmentRound> request) {
 		assert request != null;
 
-		Application result;
+		InvestmentRound result;
 		int id;
 
 		id = request.getModel().getInteger("id");

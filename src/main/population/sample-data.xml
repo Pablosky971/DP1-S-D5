@@ -385,7 +385,7 @@
      
      <bean id="application01" class="acme.entities.application.Application">
 	
-	<property name="ticker" value="INI-20-103468"/>
+	<property name="ticker" value="INI-20-108968"/>
 	<property name="dateOfCreation" value="2020/08/14 16:48"/>
 	<property name="statement" value="Por una buena causa."/>
 	<property name="moneyOffer" value="200.00 EUR" />
@@ -405,6 +405,8 @@
 	<property name="investment" ref="investmentRound01" />
 	</bean>
 	
+	 
+	
 	 <bean id="application03" class="acme.entities.application.Application">
 	
 	<property name="ticker" value="ALT-20-104528"/>
@@ -414,6 +416,27 @@
 	<property name="investor" ref="investor1Investor" />
 	<property name="investment" ref="investmentRound03" />
 	</bean>
+	
+	<bean id="application04" class="acme.entities.application.Application">
+	
+	<property name="ticker" value="INI-20-104534"/>
+	<property name="dateOfCreation" value="2020/08/21 16:00"/>
+	<property name="statement" value="Apoyar a la causa con está cuantiosa contribución."/>
+	<property name="moneyOffer" value="454.70 EUR" />
+	<property name="investor" ref="investor1Investor" />
+	<property name="investment" ref="investmentRound01" />
+	</bean>
+	
+	<bean id="application05" class="acme.entities.application.Application">
+	
+	<property name="ticker" value="INI-20-108969"/>
+	<property name="dateOfCreation" value="2020/08/21 16:05"/>
+	<property name="statement" value="Siempre se puede ayudar."/>
+	<property name="moneyOffer" value="454.90 EUR" />
+	<property name="investor" ref="investor1Investor" />
+	<property name="investment" ref="investmentRound01" />
+	</bean>
+	
     <!-- Activity -->
     
     <bean id="activity01" class="acme.entities.investmentRound.Activity">

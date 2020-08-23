@@ -22,7 +22,7 @@ import acme.framework.repositories.AbstractRepository;
 @Repository
 public interface EntrepreneurApplicationRepository extends AbstractRepository {
 
-	@Query("select ap from Application ap where ap.investment.entrepreneur.id = ?1")
+	@Query("select ap from Application ap where ap.investment.entrepreneur.id = ?1 group by ap.ticker, ap.dateOfCreation")
 	Collection<Application> findManyApplicationByEntrepreneurId(Integer entrepreneurId);
 	
 	@Query("select ap from Application ap where ap.id = ?1")
