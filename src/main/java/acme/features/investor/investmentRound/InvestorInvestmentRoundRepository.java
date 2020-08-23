@@ -1,5 +1,4 @@
 /*
- * AnonymousUserAccountRepository.java
  *
  * Copyright (c) 2019 Rafael Corchuelo.
  *
@@ -10,33 +9,29 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.investor.application;
+package acme.features.investor.investmentRound;
 
 import java.util.Collection;
 
-import org.springframework.boot.autoconfigure.batch.BatchProperties.Job;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import acme.entities.application.Application;
+
 import acme.entities.investmentRound.InvestmentRound;
-import acme.entities.roles.Investor;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
-public interface InvestorApplicationRepository extends AbstractRepository {
+public interface InvestorInvestmentRoundRepository extends AbstractRepository {
 
-	@Query("select ap from Application ap where ap.investor.id = ?1")
-	Collection<Application> findManyByInvestorId(Integer id);
+	@Query("select ir from InvestmentRound ir")
+	Collection<InvestmentRound> findMany();
 	
-	@Query("select ap from Application ap where ap.id = ?1")
-	Application findOne(Integer id);
-	
-	@Query("select inv from Investor inv where inv.id = ?1")
-	Investor findByInvestorId(int id);
-
 	@Query("select ir from InvestmentRound ir where ir.id = ?1")
-	InvestmentRound findInvestmentRoundById(int id);
+	InvestmentRound findOne(Integer id);
+	
+	
+	
+	
 
 
 }

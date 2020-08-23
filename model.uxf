@@ -543,7 +543,7 @@ Investor
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Applications
 --
-+ ticker: String{NotBlank, Pattern}
++ ticker: String{Column, NotBlank, Pattern}
 + dateOfCreation: Date{Temporal(TIMESTAMP),Past}
 + statement: String{NotBlank}
 + moneyOffer: Money{NotNull, Valid}

@@ -17,9 +17,18 @@
 
 <acme:form>
 	<acme:form-textbox code="investor.application.form.label.ticker" path="ticker"/>
+	<jstl:if test="${command !='create'}">
 	<acme:form-moment code="investor.application.form.label.dateOfCreation" path="dateOfCreation" readonly="true"/>
+	</jstl:if>
 	<acme:form-textarea code="investor.application.form.label.statement" path="statement"/>
+	<acme:form-money code="investor.application.form.label.moneyOffer" path="moneyOffer"/>
 	
-	
+	 <jstl:if test="${id==0}">
+    <acme:form-submit test="${command == 'create'}" code="investor.application.form.button.create" action="create?id=${investment.id}"/>
+    </jstl:if>
+    <jstl:if test="${id!=0}">
+    <acme:form-submit test="${command == 'create'}" code="investor.application.form.button.create" action="create?id=${id}"/>
+    </jstl:if>
+    
 	<acme:form-return code="investor.application.form.button.return"/>
 </acme:form>

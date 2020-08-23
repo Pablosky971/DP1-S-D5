@@ -2,6 +2,7 @@ package acme.entities.application;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -29,6 +30,8 @@ public class Application extends DomainEntity {
 		private static final long serialVersionUID = 1L;
 			
 	// Attributes
+		
+		@Column(unique = true)
 		@NotBlank
 		@Pattern(regexp = "\\w{3}\\-\\d{2}\\-\\d{6}")
 		private String ticker;
@@ -55,7 +58,7 @@ public class Application extends DomainEntity {
 		
 		@NotNull
 		@Valid
-		@ManyToOne(optional = false)
+		@ManyToOne(optional = true)
 		private InvestmentRound investment;
 		
 		
