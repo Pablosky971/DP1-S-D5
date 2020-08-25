@@ -437,6 +437,16 @@
 	<property name="investment" ref="investmentRound01" />
 	</bean>
 	
+	<bean id="application06" class="acme.entities.application.Application">
+	
+	<property name="ticker" value="INI-20-540987"/>
+	<property name="dateOfCreation" value="2020/08/12 13:07"/>
+	<property name="statement" value="Los auspiciamos."/>
+	<property name="moneyOffer" value="567.20 EUR" />
+	<property name="investor" ref="investor1Investor" />
+	<property name="investment" ref="investmentRound01" />
+	</bean>
+	
     <!-- Activity -->
     
     <bean id="activity01" class="acme.entities.investmentRound.Activity">
