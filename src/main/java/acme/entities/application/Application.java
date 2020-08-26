@@ -48,6 +48,11 @@ public class Application extends DomainEntity {
 		@Valid
 		private Money moneyOffer;
 		
+		@NotNull
+		private String aceptacion;
+		
+		private String justificacion;
+		
 
 	// Relationships
 		
