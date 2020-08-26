@@ -389,9 +389,10 @@
 	<property name="dateOfCreation" value="2020/08/14 16:48"/>
 	<property name="statement" value="Por una buena causa."/>
 	<property name="moneyOffer" value="200.00 EUR" />
+	<property name="aceptacion" value="true"/>
+	<property name="justificacion" value=""/>
 	<property name="investor" ref="investor1Investor" />
 	<property name="investment" ref="investmentRound01" />
-	
 	</bean>
 	
 	
@@ -401,6 +402,8 @@
 	<property name="dateOfCreation" value="2020/08/14 16:50"/>
 	<property name="statement" value="Para apoyar a las familias más empobrecidas."/>
 	<property name="moneyOffer" value="400.50 EUR" />
+	<property name="aceptacion" value="true"/>
+	<property name="justificacion" value=""/>
 	<property name="investor" ref="investor1Investor" />
 	<property name="investment" ref="investmentRound01" />
 	</bean>
@@ -413,6 +416,8 @@
 	<property name="dateOfCreation" value="2020/08/14 16:50"/>
 	<property name="statement" value="Para apoyar a las familias más empobrecidas."/>
 	<property name="moneyOffer" value="400.50 EUR" />
+	<property name="aceptacion" value="true"/>
+	<property name="justificacion" value=""/>
 	<property name="investor" ref="investor1Investor" />
 	<property name="investment" ref="investmentRound03" />
 	</bean>
@@ -423,6 +428,8 @@
 	<property name="dateOfCreation" value="2020/08/21 16:00"/>
 	<property name="statement" value="Apoyar a la causa con está cuantiosa contribución."/>
 	<property name="moneyOffer" value="454.70 EUR" />
+	<property name="aceptacion" value="true"/>
+	<property name="justificacion" value=""/>
 	<property name="investor" ref="investor1Investor" />
 	<property name="investment" ref="investmentRound01" />
 	</bean>
@@ -433,6 +440,8 @@
 	<property name="dateOfCreation" value="2020/08/21 16:05"/>
 	<property name="statement" value="Siempre se puede ayudar."/>
 	<property name="moneyOffer" value="454.90 EUR" />
+	<property name="aceptacion" value="true"/>
+	<property name="justificacion" value=""/>
 	<property name="investor" ref="investor1Investor" />
 	<property name="investment" ref="investmentRound01" />
 	</bean>
@@ -443,6 +452,8 @@
 	<property name="dateOfCreation" value="2020/08/12 13:07"/>
 	<property name="statement" value="Los auspiciamos."/>
 	<property name="moneyOffer" value="567.20 EUR" />
+	<property name="aceptacion" value="true"/>
+	<property name="justificacion" value=""/>
 	<property name="investor" ref="investor1Investor" />
 	<property name="investment" ref="investmentRound01" />
 	</bean>

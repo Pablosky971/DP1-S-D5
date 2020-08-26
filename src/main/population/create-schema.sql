@@ -28,12 +28,14 @@
     create table `application` (
        `id` integer not null,
         `version` integer not null,
+        `aceptacion` varchar(255),
         `date_of_creation` datetime(6),
+        `justificacion` varchar(255),
         `money_offer_amount` double precision,
         `money_offer_currency` varchar(255),
         `statement` varchar(255),
         `ticker` varchar(255),
-        `investment_id` integer not null,
+        `investment_id` integer,
         `investor_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
@@ -229,6 +231,9 @@
     ) engine=InnoDB;
 
     insert into `hibernate_sequence` values ( 1 );
+
+    alter table `application` 
+       add constraint UK_ao7wxw7e7mkj6g5q49yq2fw8d unique (`ticker`);
 
     alter table `user_account` 
        add constraint UK_castjbvpeeus0r8lbpehiu0e4 unique (`username`);

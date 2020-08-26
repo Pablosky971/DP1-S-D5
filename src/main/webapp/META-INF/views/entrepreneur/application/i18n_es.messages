@@ -17,8 +17,14 @@ entrepreneur.application.form.label.ticker = Código bursátil
 entrepreneur.application.form.label.dateOfCreation = Fecha de creación
 entrepreneur.application.form.label.statement = Declaración
 entrepreneur.application.form.label.moneyOffer = Oferta
+entrepreneur.application.form.label.aceptacion = Decision del emprendedor
+entrepreneur.application.form.label.aceptacionFutura = ¿Que decision deseas tomar?
+entrepreneur.application.form.label.true = Aceptar aplicacion
+entrepreneur.application.form.label.false = Rechazar aplicacion
+entrepreneur.application.form.label.justificacion = Justificacion de tu decision
 
+entrepreneur.application.error.debeJustificar = Debes justificar tu rechazo
 
-
+entrepreneur.application.form.button.update = Actualizar
 entrepreneur.application.form.button.return = Volver
 
