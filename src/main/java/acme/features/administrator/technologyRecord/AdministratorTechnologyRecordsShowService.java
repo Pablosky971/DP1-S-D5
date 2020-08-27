@@ -1,5 +1,5 @@
 /*
- * AnonymousUserAccountCreateService.java
+ 
  *
  * Copyright (c) 2019 Rafael Corchuelo.
  *
@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.technologyRecords;
+package acme.features.administrator.technologyRecord;
 
 
 
@@ -18,19 +18,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.technologyRecords.TechnologyRecords;
-import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Authenticated;
-import acme.framework.services.AbstractDeleteService;
+import acme.framework.entities.Administrator;
+import acme.framework.services.AbstractShowService;
 
 @Service
-public class AuthenticatedTechnologyRecordsDeleteService implements AbstractDeleteService<Authenticated, TechnologyRecords> {
+public class AdministratorTechnologyRecordsShowService implements AbstractShowService<Administrator, TechnologyRecords> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	AuthenticatedTechnologyRecordsRepository repository;
+	AdministratorTechnologyRecordsRepository repository;
 
 
 	@Override
@@ -40,14 +39,7 @@ public class AuthenticatedTechnologyRecordsDeleteService implements AbstractDele
 		return true;
 	}
 
-	@Override
-	public void bind(final Request<TechnologyRecords> request, final TechnologyRecords entity, final Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
 
-		request.bind(entity, errors);
-	}
 
 	@Override
 	public void unbind(final Request<TechnologyRecords> request, final TechnologyRecords entity, final Model model) {
@@ -73,24 +65,12 @@ public class AuthenticatedTechnologyRecordsDeleteService implements AbstractDele
 		return result;
 	}
 
-	@Override
-	public void validate(final Request<TechnologyRecords> request, final TechnologyRecords entity, final Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
+
 
 	}
 
-		
 
-	@Override
-	public void delete(final Request<TechnologyRecords> request, final TechnologyRecords entity) {
-		assert request != null;
-		assert entity != null;
 
-		
-		this.repository.delete(entity);
-		
-	}
+	
 
-}
+
