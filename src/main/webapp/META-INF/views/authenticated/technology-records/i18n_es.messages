@@ -10,7 +10,6 @@
 
 authenticated.technologyRecords.list.label.title = Título
 authenticated.technologyRecords.list.label.activitySector = Sector de actividad
-authenticated.technologyRecords.list.label.indication = Indicación
 authenticated.technologyRecords.list.label.stars = Estrellas (valoración del 1 al 10)
 
 authenticated.technologyRecords.form.label.title = Título
