@@ -10,7 +10,6 @@
 
 administrator.technologyRecords.list.label.title = Título
 administrator.technologyRecords.list.label.activitySector = Sector de actividad
-administrator.technologyRecords.list.label.indication = Indicación
 administrator.technologyRecords.list.label.stars = Estrellas (valoración del 1 al 10)
 
 
@@ -21,8 +20,6 @@ administrator.technologyRecords.form.label.description = Descripción
 administrator.technologyRecords.form.label.website = Sitio web
 administrator.technologyRecords.form.label.email = Correo electrónico
 administrator.technologyRecords.form.label.indication = Indicación
-administrator.technologyRecords.form.label.indication.openSource = Software libre
-administrator.technologyRecords.form.label.indication.closeSource = Software propietario
 administrator.technologyRecords.form.label.stars = Estrellas (valoración del 1 al 10)
 
 administrator.technologyRecords.form.button.create = Crear

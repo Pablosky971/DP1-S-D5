@@ -22,10 +22,7 @@
 	<acme:form-textarea code="administrator.technologyRecords.form.label.description" path="description"/>
 	<acme:form-textbox code="administrator.technologyRecords.form.label.website" path="website"/>
 	<acme:form-textbox code="administrator.technologyRecords.form.label.email" path="email"/>
-	<acme:form-select code="administrator.technologyRecords.form.label.indication" path="indication">
-		<acme:form-option code="administrator.technologyRecords.form.label.indication.openSource" value="OPEN_SOURCE" selected="${status == 'OPEN_SOURCE'}"/>
-		<acme:form-option code="administrator.technologyRecords.form.label.indication.closeSource" value="CLOSE_SOURCE" selected="${status == 'CLOSE_SOURCE'}"/>
-	</acme:form-select>
+	<acme:form-textbox code="administrator.technologyRecords.form.label.indication" path="indication"/>
 	<acme:form-integer code="administrator.technologyRecords.form.label.stars" path="stars"/>
 	
 
