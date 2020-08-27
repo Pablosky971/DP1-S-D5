@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.anonymous.technologyRecords;
+package acme.features.administrator.technologyRecord;
 
 import javax.annotation.PostConstruct;
 
@@ -21,21 +21,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import acme.entities.technologyRecords.TechnologyRecords;
 import acme.framework.components.BasicCommand;
 import acme.framework.controllers.AbstractController;
-import acme.framework.entities.Anonymous;
+import acme.framework.entities.Administrator;
 
 @Controller
-@RequestMapping("/anonymous/technology-records/")
-public class AnonymousTechnologyRecordsController extends AbstractController<Anonymous, TechnologyRecords> {
+@RequestMapping("/administrator/technology-records/")
+public class AdministratorTechnologyRecordsController extends AbstractController<Administrator, TechnologyRecords> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AnonymousTechnologyRecordsListService listService;
+	private AdministratorTechnologyRecordsListService listService;
 	
 	@Autowired
-	private AnonymousTechnologyRecordsShowService showService;
+	private AdministratorTechnologyRecordsShowService showService;
 	
+	@Autowired
+	private AdministratorTechnologyRecordsCreateService createService;
 	
+	@Autowired
+	private AdministratorTechnologyRecordsUpdateService updateService;
+	
+	@Autowired
+	private AdministratorTechnologyRecordsDeleteService deleteService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -44,7 +51,9 @@ public class AnonymousTechnologyRecordsController extends AbstractController<Ano
 	private void initialise() {
 		super.addBasicCommand(BasicCommand.LIST, this.listService);
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
-		
+		super.addBasicCommand(BasicCommand.CREATE, this.createService);
+		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
+		super.addBasicCommand(BasicCommand.DELETE, this.deleteService);
 	}
 
 }

@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.technologyRecords;
+package acme.features.administrator.technologyRecord;
 
 
 
@@ -21,16 +21,16 @@ import acme.entities.technologyRecords.TechnologyRecords;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Authenticated;
+import acme.framework.entities.Administrator;
 import acme.framework.services.AbstractUpdateService;
 
 @Service
-public class AuthenticatedTechnologyRecordsUpdateService implements AbstractUpdateService<Authenticated, TechnologyRecords> {
+public class AdministratorTechnologyRecordsUpdateService implements AbstractUpdateService<Administrator, TechnologyRecords> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	AuthenticatedTechnologyRecordsRepository repository;
+	AdministratorTechnologyRecordsRepository repository;
 
 
 	@Override

@@ -10,40 +10,38 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.anonymous.technologyRecords;
+package acme.features.administrator.inquiries;
 
-import java.util.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import acme.entities.technologyRecords.TechnologyRecords;
-
+import acme.entities.inquiries.Inquiries;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Anonymous;
-import acme.framework.services.AbstractCreateService;
+import acme.framework.entities.Administrator;
+import acme.framework.services.AbstractDeleteService;
 
 @Service
-public class AnonymousTechnologyRecordsCreateService implements AbstractCreateService<Anonymous, TechnologyRecords> {
+public class AdministratorInquiriesDeleteService implements AbstractDeleteService<Administrator, Inquiries> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	AnonymousTechnologyRecordsRepository repository;
+	AdministratorInquiriesRepository repository;
 
 
 	@Override
-	public boolean authorise(final Request<TechnologyRecords> request) {
+	public boolean authorise(final Request<Inquiries> request) {
 		assert request != null;
 
 		return true;
 	}
 
 	@Override
-	public void bind(final Request<TechnologyRecords> request, final TechnologyRecords entity, final Errors errors) {
+	public void bind(final Request<Inquiries> request, final Inquiries entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -52,33 +50,31 @@ public class AnonymousTechnologyRecordsCreateService implements AbstractCreateSe
 	}
 
 	@Override
-	public void unbind(final Request<TechnologyRecords> request, final TechnologyRecords entity, final Model model) {
+	public void unbind(final Request<Inquiries> request, final Inquiries entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "activitySector", "inventor", "description", "website", "email", "indication", "stars");
+		request.unbind(entity, model, "title", "deadline", "description", "minMoney", "maxMoney", "email");
 
 		
 	}
 
 	@Override
-	public TechnologyRecords instantiate(final Request<TechnologyRecords> request) {
+	public Inquiries findOne(final Request<Inquiries> request) {
 		assert request != null;
 
-		TechnologyRecords result;
-		Date moment;
-		
-		moment = new Date(System.currentTimeMillis() - 1);
-		
+		Inquiries result;
+		int id;
 
-		result = new TechnologyRecords();
-		
+		id = request.getModel().getInteger("id");
+		result = this.repository.findOne(id);
+
 		return result;
 	}
 
 	@Override
-	public void validate(final Request<TechnologyRecords> request, final TechnologyRecords entity, final Errors errors) {
+	public void validate(final Request<Inquiries> request, final Inquiries entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -88,12 +84,12 @@ public class AnonymousTechnologyRecordsCreateService implements AbstractCreateSe
 		
 
 	@Override
-	public void create(final Request<TechnologyRecords> request, final TechnologyRecords entity) {
+	public void delete(final Request<Inquiries> request, final Inquiries entity) {
 		assert request != null;
 		assert entity != null;
 
 		
-		this.repository.save(entity);
+		this.repository.delete(entity);
 		
 	}
 
