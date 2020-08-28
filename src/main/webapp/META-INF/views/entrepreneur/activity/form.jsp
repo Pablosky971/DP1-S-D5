@@ -17,11 +17,37 @@
 
 <acme:form>
 	<acme:form-textbox code="entrepreneur.activity.form.label.title" path="title"/>
-	<acme:form-textbox code="entrepreneur.activity.form.label.start" path="start"/>
+	<jstl:if test="${command !='create'}">
+	<acme:form-textbox code="entrepreneur.activity.form.label.start" path="start" readonly="true"/>
+	</jstl:if>
 	<acme:form-textbox code="entrepreneur.activity.form.label.end" path="end"/>
-	<acme:form-textbox code="entrepreneur.activity.form.label.budget" path="budget"/>
+	<acme:form-money code="entrepreneur.activity.form.label.budget" path="budget"/>
+	
 
-<%-- 	<acme:form-submit code="entrepreneur.activity.form.button.create" action="/entrepreneur/activity/create"/> --%>
+ 	<jstl:if test="${id==0}">
+    <acme:form-submit test="${command == 'create'}" code="entrepreneur.activity.form.button.create" action="create?id=${investment.id}"/>
+    </jstl:if>
+    <jstl:if test="${id!=0}">
+    <acme:form-submit test="${command == 'create'}" code="entrepreneur.activity.form.button.create" action="create?id=${id}"/>
+    </jstl:if>	
+	
+	
+	<acme:form-submit test="${command == 'show' }"
+	 code="entrepreneur.activity.form.button.update" 
+	 action="/entrepreneur/activity/update"/>
+	
+	<acme:form-submit test="${command == 'show' }"
+	 code="entrepreneur.activity.form.button.delete" 
+	 action="/entrepreneur/activity/delete"/>
+	 
+	<acme:form-submit test="${command == 'update' }"
+ 	 code="entrepreneur.activity.form.button.update"
+	 action="/entrepreneur/activity/update"/>
+	 
+	 <acme:form-submit test="${command == 'delete' }"
+	 code="entrepreneur.activity.form.button.delete" 
+	 action="/entrepreneur/activity/delete"/>
+
 	<acme:form-return code="entrepreneur.activity.form.button.return"/>
 	
 </acme:form>
