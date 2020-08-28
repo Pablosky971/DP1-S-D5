@@ -14,6 +14,7 @@ import acme.entities.roles.Investor;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
+import acme.framework.entities.Principal;
 import acme.framework.services.AbstractCreateService;
 
 @Service
@@ -28,7 +29,6 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 	@Override
 	public boolean authorise(final Request<Application> request) {
 		assert request != null;
-		
 	
 		return true;
 	}
@@ -39,7 +39,7 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "dateOfCreation");
+		request.bind(entity, errors);
 	}
 
 	@Override
@@ -58,13 +58,20 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 		assert request != null;
 
 		Application result;
+		Date moment;
+		
+
 		result = new Application();
 		int id = request.getModel().getInteger("id");
-	    InvestmentRound ir= this.repository.findInvestmentRoundById(id);
-
 		
+	    InvestmentRound ir= this.repository.findInvestmentRoundById(id);
 		result.setInvestor(this.repository.findByInvestorId(request.getPrincipal().getActiveRoleId()));
 		result.setInvestment(ir);
+		
+		moment = new Date(System.currentTimeMillis() - 1);
+		result.setDateOfCreation(moment);
+		
+		result.setAceptacion("unanswered");
 
 		return result;
 		
@@ -76,7 +83,26 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		
+		boolean isCurrencyEuro;
+		
+		// Verificamos que no haya ningún duplicado:
+		
+		if (!errors.hasErrors("ticker")) {
+			boolean isOnlyOne = this.repository.findApplicationTicker(entity.getTicker()) != null;
+			errors.state(request, !isOnlyOne, "ticker", "investor.application.error.label.onlyOne");
+		}
 
+		// Comprobamos las divisas:
+		
+		if (!errors.hasErrors("moneyOffer")) { 
+			String currency = entity.getMoneyOffer().getCurrency();
+			isCurrencyEuro = currency.equals("€") || currency.equals("EUR");
+			errors.state(request, isCurrencyEuro, "moneyOffer", "investor.application.error.euro-currency");
+		}
+		
+		
+		
 	}
 
 		
@@ -86,13 +112,7 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 		assert request != null;
 		assert entity != null;
 		
-		Date moment;
-
-		moment = new Date(System.currentTimeMillis() - 1);
-		entity.setDateOfCreation(moment);;
-
-
-		
+				
 		this.repository.save(entity);
 		
 	}

@@ -17,6 +17,8 @@ investor.application.form.label.ticker = Código bursátil
 investor.application.form.label.dateOfCreation = Fecha de creación
 investor.application.form.label.statement = Declaración
 investor.application.form.label.moneyOffer = Oferta
+investor.application.error.euro-currency = La divisa debe ser EUR o €.
+investor.application.error.label.onlyOne = Este código bursátil ya existe.
 
 
 investor.application.form.button.create = Crear

@@ -33,11 +33,12 @@ public class Application extends DomainEntity {
 		
 		@Column(unique = true)
 		@NotBlank
-		@Pattern(regexp = "\\w{3}\\-\\d{2}\\-\\d{6}")
+		@Pattern(regexp = "^([A-Z]){3}[-]{1}[0-9]{2}[-]{1}[0-9]{6}$")
 		private String ticker;
 		
 		
 		@Temporal(TemporalType.TIMESTAMP)
+		@NotNull
 		@Past
 		private Date dateOfCreation;
 		

@@ -47,7 +47,7 @@ public class AdministratorInquiriesCreateService implements AbstractCreateServic
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors);
+		request.bind(entity, errors, "dateOfCreation");
 	}
 
 	@Override
