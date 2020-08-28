@@ -1,5 +1,5 @@
 /*
- * AnonymousUserAccountCreateService.java
+ 
  *
  * Copyright (c) 2019 Rafael Corchuelo.
  *
@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.inquiries;
+package acme.features.administrator.inquiries;
 
 
 
@@ -19,20 +19,18 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.inquiries.Inquiries;
 import acme.entities.technologyRecords.TechnologyRecords;
-import acme.features.anonymous.technologyRecords.AnonymousTechnologyRecordsRepository;
-import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Authenticated;
-import acme.framework.services.AbstractDeleteService;
+import acme.framework.entities.Administrator;
+import acme.framework.services.AbstractShowService;
 
 @Service
-public class AuthenticatedInquiriesDeleteService implements AbstractDeleteService<Authenticated, Inquiries> {
+public class AdministratorInquiriesShowService implements AbstractShowService<Administrator, Inquiries> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	 AuthenticatedInquiriesRepository repository;
+	AdministratorInquiriesRepository repository;
 
 
 	@Override
@@ -42,14 +40,7 @@ public class AuthenticatedInquiriesDeleteService implements AbstractDeleteServic
 		return true;
 	}
 
-	@Override
-	public void bind(final Request<Inquiries> request, final Inquiries entity, final Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
 
-		request.bind(entity, errors);
-	}
 
 	@Override
 	public void unbind(final Request<Inquiries> request, final Inquiries entity, final Model model) {
@@ -57,7 +48,7 @@ public class AuthenticatedInquiriesDeleteService implements AbstractDeleteServic
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "deadline", "description", "minMoney", "maxMoney", "email");
+		request.unbind(entity, model, "title", "dateOfCreation","deadline", "description", "minMoney", "maxMoney", "email");
 
 		
 	}
@@ -75,24 +66,12 @@ public class AuthenticatedInquiriesDeleteService implements AbstractDeleteServic
 		return result;
 	}
 
-	@Override
-	public void validate(final Request<Inquiries> request, final Inquiries entity, final Errors errors) {
-		assert request != null;
-		assert entity != null;
-		assert errors != null;
+
 
 	}
 
-		
 
-	@Override
-	public void delete(final Request<Inquiries> request, final Inquiries entity) {
-		assert request != null;
-		assert entity != null;
 
-		
-		this.repository.delete(entity);
-		
-	}
+	
 
-}
+

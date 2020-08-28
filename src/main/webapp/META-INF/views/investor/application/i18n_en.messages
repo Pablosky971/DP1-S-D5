@@ -17,6 +17,8 @@ investor.application.form.label.ticker = Ticker
 investor.application.form.label.dateOfCreation = Date of creation
 investor.application.form.label.statement = Statement
 investor.application.form.label.moneyOffer = Offer
+investor.application.error.euro-currency = The currency must be EUR or €.
+investor.application.error.label.onlyOne = This ticker already exist.
 
 
 investor.application.form.button.create = Create

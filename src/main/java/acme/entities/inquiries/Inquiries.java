@@ -37,6 +37,7 @@ public class Inquiries extends DomainEntity{
 	
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
 	@Future
 	private Date deadline;
 	

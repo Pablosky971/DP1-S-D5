@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.inquiries;
+package acme.features.administrator.inquiries;
 
 import java.util.Date;
 
@@ -18,21 +18,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.inquiries.Inquiries;
-import acme.entities.shout.Shout;
-import acme.features.anonymous.shout.AnonymousShoutRepository;
+import acme.entities.overture.Overture;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Authenticated;
+import acme.framework.entities.Administrator;
 import acme.framework.services.AbstractCreateService;
 
 @Service
-public class AuthenticatedInquiriesCreateService implements AbstractCreateService<Authenticated, Inquiries> {
+public class AdministratorInquiriesCreateService implements AbstractCreateService<Administrator, Inquiries> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	AuthenticatedInquiriesRepository repository;
+	AdministratorInquiriesRepository repository;
 
 
 	@Override
@@ -48,7 +47,7 @@ public class AuthenticatedInquiriesCreateService implements AbstractCreateServic
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors);
+		request.bind(entity, errors, "dateOfCreation");
 	}
 
 	@Override
@@ -59,24 +58,18 @@ public class AuthenticatedInquiriesCreateService implements AbstractCreateServic
 
 		request.unbind(entity, model, "title", "deadline", "description", "minMoney", "maxMoney", "email");
 
-
 		
 	}
 
 	@Override
 	public Inquiries instantiate(final Request<Inquiries> request) {
 		assert request != null;
-
-		Inquiries result;
+		Inquiries result = new Inquiries();
 		Date moment;
 		
 		moment = new Date(System.currentTimeMillis() - 1);
+		result.setDateOfCreation(moment);
 		
-
-		result = new Inquiries();
-		
-		
-
 		return result;
 	}
 
@@ -85,6 +78,30 @@ public class AuthenticatedInquiriesCreateService implements AbstractCreateServic
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		
+		boolean isCurrencyMinEuro, isCurrencyEuroMaxEuro, isMinMax;
+
+		// Comprobamos las divisas:
+		
+		if (!errors.hasErrors("minMoney")) { 
+			String currencyMin = entity.getMinMoney().getCurrency();
+			isCurrencyMinEuro = currencyMin.equals("€") || currencyMin.equals("EUR");
+			errors.state(request, isCurrencyMinEuro, "minMoney", "administrator.inquiries.error.min-euro-currency");
+		}
+
+		if (!errors.hasErrors("maxMoney")) {
+			String currencyMax = entity.getMaxMoney().getCurrency();
+			isCurrencyEuroMaxEuro = currencyMax.equals("€") || currencyMax.equals("EUR");
+			errors.state(request, isCurrencyEuroMaxEuro, "maxMoney", "administrator.inquiries.error.max-euro-currency");
+		}
+
+		// El máximo del intervalo del dinero debe ser mayor que el mínimo:
+		if (!errors.hasErrors("maxMoney") && !errors.hasErrors("minMoney")) {
+			Double minAmount = entity.getMinMoney().getAmount();
+			Double maxAmount = entity.getMaxMoney().getAmount();
+			isMinMax = minAmount < maxAmount;
+			errors.state(request, isMinMax, "maxMoney", "administrator.inquiries.error.not-max");
+		}
 
 	}
 
@@ -95,10 +112,7 @@ public class AuthenticatedInquiriesCreateService implements AbstractCreateServic
 		assert request != null;
 		assert entity != null;
 
-		Date moment;
-		
-		moment = new Date(System.currentTimeMillis() - 1);
-		entity.setDateOfCreation(moment);
+	
 		this.repository.save(entity);
 		
 	}

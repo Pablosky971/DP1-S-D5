@@ -10,29 +10,30 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.inquiries;
+package acme.features.administrator.inquiries;
 
 
+
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.inquiries.Inquiries;
 import acme.entities.technologyRecords.TechnologyRecords;
-import acme.features.anonymous.technologyRecords.AnonymousTechnologyRecordsRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Authenticated;
+import acme.framework.entities.Administrator;
 import acme.framework.services.AbstractUpdateService;
 
 @Service
-public class AuthenticatedInquiriesUpdateService implements AbstractUpdateService<Authenticated, Inquiries> {
+public class AdministratorInquiriesUpdateService implements AbstractUpdateService<Administrator, Inquiries> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	AuthenticatedInquiriesRepository repository;
+	AdministratorInquiriesRepository repository;
 
 
 	@Override
@@ -80,6 +81,30 @@ public class AuthenticatedInquiriesUpdateService implements AbstractUpdateServic
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		
+		boolean isCurrencyMinEuro, isCurrencyEuroMaxEuro, isMinMax;
+
+		// Comprobamos las divisas:
+		
+		if (!errors.hasErrors("minMoney")) { 
+			String currencyMin = entity.getMinMoney().getCurrency();
+			isCurrencyMinEuro = currencyMin.equals("€") || currencyMin.equals("EUR");
+			errors.state(request, isCurrencyMinEuro, "minMoney", "administrator.inquiries.error.min-euro-currency");
+		}
+
+		if (!errors.hasErrors("maxMoney")) {
+			String currencyMax = entity.getMaxMoney().getCurrency();
+			isCurrencyEuroMaxEuro = currencyMax.equals("€") || currencyMax.equals("EUR");
+			errors.state(request, isCurrencyEuroMaxEuro, "maxMoney", "administrator.inquiries.error.max-euro-currency");
+		}
+
+		// El máximo del intervalo del dinero debe ser mayor que el mínimo:
+		if (!errors.hasErrors("maxMoney") && !errors.hasErrors("minMoney")) {
+			Double minAmount = entity.getMinMoney().getAmount();
+			Double maxAmount = entity.getMaxMoney().getAmount();
+			isMinMax = minAmount < maxAmount;
+			errors.state(request, isMinMax, "maxMoney", "administrator.inquiries.error.not-max");
+		}
 
 	}
 
@@ -89,6 +114,11 @@ public class AuthenticatedInquiriesUpdateService implements AbstractUpdateServic
 	public void update(final Request<Inquiries> request, final Inquiries entity) {
 		assert request != null;
 		assert entity != null;
+		
+		Date moment;
+		
+		moment = new Date(System.currentTimeMillis() - 1);
+		entity.setDateOfCreation(moment); //Actualizamos la fecha de creacion/actualizacion de forma automatica tras cada actualizacion
 
 		
 		this.repository.save(entity);

@@ -10,9 +10,9 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.authenticated.technologyRecords;
+package acme.features.administrator.technologyRecord;
 
-import java.util.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,16 +21,16 @@ import acme.entities.technologyRecords.TechnologyRecords;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Authenticated;
-import acme.framework.services.AbstractCreateService;
+import acme.framework.entities.Administrator;
+import acme.framework.services.AbstractDeleteService;
 
 @Service
-public class AuthenticatedTechnologyRecordsCreateService implements AbstractCreateService<Authenticated, TechnologyRecords> {
+public class AdministratorTechnologyRecordsDeleteService implements AbstractDeleteService<Administrator, TechnologyRecords> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	AuthenticatedTechnologyRecordsRepository repository;
+	AdministratorTechnologyRecordsRepository repository;
 
 
 	@Override
@@ -61,17 +61,15 @@ public class AuthenticatedTechnologyRecordsCreateService implements AbstractCrea
 	}
 
 	@Override
-	public TechnologyRecords instantiate(final Request<TechnologyRecords> request) {
+	public TechnologyRecords findOne(final Request<TechnologyRecords> request) {
 		assert request != null;
 
 		TechnologyRecords result;
-		Date moment;
-		
-		moment = new Date(System.currentTimeMillis() - 1);
-		
+		int id;
 
-		result = new TechnologyRecords();
-		
+		id = request.getModel().getInteger("id");
+		result = this.repository.findOne(id);
+
 		return result;
 	}
 
@@ -86,12 +84,12 @@ public class AuthenticatedTechnologyRecordsCreateService implements AbstractCrea
 		
 
 	@Override
-	public void create(final Request<TechnologyRecords> request, final TechnologyRecords entity) {
+	public void delete(final Request<TechnologyRecords> request, final TechnologyRecords entity) {
 		assert request != null;
 		assert entity != null;
 
 		
-		this.repository.save(entity);
+		this.repository.delete(entity);
 		
 	}
 
