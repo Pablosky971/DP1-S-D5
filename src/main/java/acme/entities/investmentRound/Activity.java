@@ -17,6 +17,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
+import acme.entities.roles.Entrepreneur;
 import acme.framework.datatypes.Money;
 import acme.framework.entities.DomainEntity;
 import lombok.Getter;
@@ -55,12 +56,12 @@ public class Activity extends DomainEntity{
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	@Cascade(value = {
-			org.hibernate.annotations.CascadeType.ALL
-		})
 	private InvestmentRound		investment;
 
-
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	private Entrepreneur	entrepreneur;
 	
 		
 

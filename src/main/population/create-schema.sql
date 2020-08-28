@@ -7,6 +7,7 @@
         `end` datetime(6),
         `start` datetime(6),
         `title` varchar(255),
+        `entrepreneur_id` integer not null,
         `investment_id` integer not null,
         primary key (`id`)
     ) engine=InnoDB;
@@ -123,6 +124,7 @@
         `amount_currency` varchar(255),
         `creation` datetime(6),
         `description` varchar(255),
+        `final_mode` varchar(255),
         `optional` varchar(255),
         `round` integer,
         `ticker` varchar(255),
@@ -237,6 +239,11 @@
 
     alter table `user_account` 
        add constraint UK_castjbvpeeus0r8lbpehiu0e4 unique (`username`);
+
+    alter table `activity` 
+       add constraint `FKc631l96iygjg328of4tfeoqo3` 
+       foreign key (`entrepreneur_id`) 
+       references `entrepreneur` (`id`);
 
     alter table `activity` 
        add constraint `FKev7kvr6qe9wut886e6ju0o9gs` 

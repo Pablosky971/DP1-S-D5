@@ -101,6 +101,7 @@ master.menu.authenticated.listInvestmentRounds = List Investment Rounds
 
 master.menu.entrepreneur = Entrepreneur
 master.menu.entrepreneur.investment-round.list = List My Investment Rounds
+master.menu.administrator.createInvestmentRound = Create an Investment Round
 master.menu.entrepreneur.application.list = List Applications from My Investment Round
 
 # master.footer ###############################################################

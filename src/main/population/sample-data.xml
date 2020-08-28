@@ -354,6 +354,7 @@
 	<property name="description" value="Inversion que puede llegar a proporcionar grandes cantidades de beneficios" />
 	<property name="amount" value="€ 3000" />
 	<property name="optional" value="" />
+	<property name="finalMode" value="true"/>
 	<property name="entrepreneur" ref="entrepreneur1Entrepreneur" />
 	</bean>
 	
@@ -366,6 +367,7 @@
 	<property name="description" value="Inversion que supone un alto riesgo pero a su vez puede generar un gran progreso" />
 	<property name="amount" value="€ 2500" />
 	<property name="optional" value="http://www.linkInformativo.com" />
+	<property name="finalMode" value="true"/>
 	<property name="entrepreneur" ref="entrepreneur1Entrepreneur" />
 	</bean>
 	
@@ -378,6 +380,7 @@
 	<property name="description" value="Inversion que supone un alto riesgo al ser un ejemplo que no esta justificado" />
 	<property name="amount" value="€ 1200" />
 	<property name="optional" value="http://www.linkInformativo.com" />
+	<property name="finalMode" value="true"/>
 	<property name="entrepreneur" ref="entrepreneur2Entrepreneur" />
 	</bean>
      
@@ -467,6 +470,7 @@
 	<property name="end" value="2021/08/15 19:00"/>
 	<property name="budget" value="€ 1500" />
 	<property name="investment" ref="investmentRound01" />
+	<property name="entrepreneur" ref="entrepreneur1Entrepreneur" />
 	</bean>
 	
 	<bean id="activity02" class="acme.entities.investmentRound.Activity">
@@ -476,6 +480,7 @@
 	<property name="end" value="2021/08/25 19:00"/>
 	<property name="budget" value="€ 1500" />
 	<property name="investment" ref="investmentRound01" />
+	<property name="entrepreneur" ref="entrepreneur1Entrepreneur" />
 	</bean>
 	
 	<bean id="activity03" class="acme.entities.investmentRound.Activity">
@@ -485,6 +490,7 @@
 	<property name="end" value="2021/08/19 12:40"/>
 	<property name="budget" value="€ 1250" />
 	<property name="investment" ref="investmentRound02" />
+	<property name="entrepreneur" ref="entrepreneur1Entrepreneur" />
 	</bean>
 	
 	<bean id="activity04" class="acme.entities.investmentRound.Activity">
@@ -494,6 +500,7 @@
 	<property name="end" value="2021/08/19 15:21"/>
 	<property name="budget" value="€ 1250" />
 	<property name="investment" ref="investmentRound02" />
+	<property name="entrepreneur" ref="entrepreneur1Entrepreneur" />
 	</bean>
 	
 	<bean id="activity05" class="acme.entities.investmentRound.Activity">
@@ -503,6 +510,7 @@
 	<property name="end" value="2021/08/19 15:21"/>
 	<property name="budget" value="€ 1200" />
 	<property name="investment" ref="investmentRound03" />
+	<property name="entrepreneur" ref="entrepreneur2Entrepreneur" />
 	</bean>
     
      
