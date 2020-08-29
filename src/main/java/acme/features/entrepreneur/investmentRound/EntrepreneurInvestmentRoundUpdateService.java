@@ -153,8 +153,12 @@ public class EntrepreneurInvestmentRoundUpdateService implements AbstractUpdateS
 		
 		if (!errors.hasErrors("investment-round")) {
 			Integer investmentRoundId = entity.getId();
-			Double sumaBudgetActividades = this.repository.getSumaBudgetActividades(investmentRoundId);
-			
+			Double sumaBudgetActividades = 0.;
+			Integer numeroActividades = this.repository.getNumeroActividadesByInvestmentRoundId(investmentRoundId);
+			if(numeroActividades >0) {
+			sumaBudgetActividades = this.repository.getSumaBudgetActividades(investmentRoundId);
+			}
+
 			if(!sumaBudgetActividades.equals(entity.getAmount().getAmount()) && entity.getFinalMode().equals("true")) { 
 				sumaIncorrecta=true;						//Es raro pero investment tiene un atributo Money amount y a su vez,	
 															// esta clase contiene un atributo Double amount
@@ -162,13 +166,6 @@ public class EntrepreneurInvestmentRoundUpdateService implements AbstractUpdateS
 			
 			errors.state(request, !sumaIncorrecta, "amount", "entrepreneur.investment-round.error.sumaMal");
 		}
-		
-//		if (!errors.hasErrors("investment-round")) { //??????????????????
-//			if(request.getModel().getString("finalMode").equals("true")) {  //???????
-//				esfinalMode = true;
-//			}
-//			errors.state(request, !sumaIncorrecta, "amount", "entrepreneur.investment-round.error.finalMode");
-//		}
 
 
 	}

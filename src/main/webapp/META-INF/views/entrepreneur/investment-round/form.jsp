@@ -51,20 +51,20 @@
     </button>
     </jstl:if>
     
-    
-    
-    
+    <jstl:if test="${finalMode == 'false' }">
     <acme:form-submit test="${command == 'show' }"
 	 code="entrepreneur.investment-round.form.button.update" 
 	 action="/entrepreneur/investment-round/update"/>
-	
-	<acme:form-submit test="${command == 'show' }"
-	 code="entrepreneur.investment-round.form.button.delete" 
-	 action="/entrepreneur/investment-round/delete"/>
+	 
 	 
 	<acme:form-submit test="${command == 'update' }"
  	 code="entrepreneur.investment-round.form.button.update"
 	 action="/entrepreneur/investment-round/update"/>
+	</jstl:if> 
+	
+	<acme:form-submit test="${command == 'show' }"
+	 code="entrepreneur.investment-round.form.button.delete" 
+	 action="/entrepreneur/investment-round/delete"/>
 	 
 	 <acme:form-submit test="${command == 'delete' }"
 	 code="entrepreneur.investment-round.form.button.delete" 

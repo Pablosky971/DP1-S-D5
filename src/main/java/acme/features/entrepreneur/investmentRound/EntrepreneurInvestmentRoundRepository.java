@@ -53,5 +53,7 @@ public interface EntrepreneurInvestmentRoundRepository extends AbstractRepositor
 	@Query("select count(*) from Application ap where ap.investment.id = ?1")
 	Integer getNumeroAplicacionesByInvestmentRoundId(Integer investmentRoundId);
 
-
+	//Contamos el numero de aplicaciones de un investment-round
+	@Query("select count(*) from Activity ac where ac.investment.id = ?1")
+	Integer getNumeroActividadesByInvestmentRoundId(Integer investmentRoundId);
 }
