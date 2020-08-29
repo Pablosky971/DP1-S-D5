@@ -10,27 +10,30 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.investor.application;
+package acme.features.entrepreneur.application;
 
+import java.time.Month;
 import java.util.Collection;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.application.Application;
-import acme.entities.roles.Investor;
+import acme.entities.roles.Entrepreneur;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Principal;
 import acme.framework.services.AbstractListService;
 
 @Service
-public class InvestorApplicationListService implements AbstractListService<Investor, Application> {
+public class EntrepreneurApplicationListMineService implements AbstractListService<Entrepreneur, Application> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	InvestorApplicationRepository repository;
+	EntrepreneurApplicationRepository repository;
 
 
 	
@@ -62,8 +65,11 @@ public class InvestorApplicationListService implements AbstractListService<Inves
 		Principal principal;
 		
 		principal = request.getPrincipal();
+		
+		
+		
 
-		result = this.repository.findManyByInvestorId(principal.getActiveRoleId());
+		result = this.repository.findManyApplicationByEntrepreneurIdGrouped(principal.getActiveRoleId());
 		
 		return result;
 	}
