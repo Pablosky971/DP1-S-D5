@@ -519,7 +519,7 @@ Challenges
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>735</x>
+      <x>812</x>
       <y>938</y>
       <w>140</w>
       <h>70</h>
@@ -537,14 +537,14 @@ Investor
     <coordinates>
       <x>294</x>
       <y>924</y>
-      <w>259</w>
+      <w>287</w>
       <h>98</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Applications
 --
 + ticker: String{Column, NotBlank, Pattern}
-+ dateOfCreation: Date{Temporal(TIMESTAMP),Past}
++ dateOfCreation: Date{Temporal(TIMESTAMP),NotNull,Past}
 + statement: String{NotBlank}
 + moneyOffer: Money{NotNull, Valid}
 + aceptacion: String{NotNull}
@@ -560,9 +560,9 @@ Applications
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>546</x>
+      <x>574</x>
       <y>959</y>
-      <w>203</w>
+      <w>252</w>
       <h>42</h>
     </coordinates>
     <panel_attributes>lt=x-&gt;
@@ -571,7 +571,7 @@ m1=0..*
 m2=1
 Registed by ^
 </panel_attributes>
-    <additional_attributes>10.0;20.0;270.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;340.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>

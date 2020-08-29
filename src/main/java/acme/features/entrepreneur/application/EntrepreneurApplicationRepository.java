@@ -11,6 +11,7 @@
 
 package acme.features.entrepreneur.application;
 
+import java.time.Month;
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
@@ -22,8 +23,13 @@ import acme.framework.repositories.AbstractRepository;
 @Repository
 public interface EntrepreneurApplicationRepository extends AbstractRepository {
 
-	@Query("select ap from Application ap where ap.investment.entrepreneur.id = ?1 group by ap.ticker order by ap.ticker desc")
+	// Listar aplicaciones, de las respectivas rondas de inversiones, agrupadas por su código bursátil. 
+	@Query("select ap from Application ap where ap.investment.entrepreneur.id = ?1 order by ap.dateOfCreation")
+	Collection<Application> findManyApplicationByEntrepreneurIdGrouped(Integer entrepreneurId);
+	// Listar aplicaciones, de las respectivas rondas de inversiones, sin agrupar. 
+	@Query("select ap from Application ap where ap.investment.entrepreneur.id = ?1")
 	Collection<Application> findManyApplicationByEntrepreneurId(Integer entrepreneurId);
+	
 	
 	@Query("select ap from Application ap where ap.id = ?1")
 	Application findOne(Integer id);

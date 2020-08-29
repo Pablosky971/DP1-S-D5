@@ -30,7 +30,7 @@ public class EntrepreneurApplicationController extends AbstractController<Entrep
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private EntrepreneurApplicationListService listMineService;
+	private EntrepreneurApplicationListMineService listMineService;
 	
 	@Autowired
 	private EntrepreneurApplicationShowService showService;
