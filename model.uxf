@@ -387,7 +387,7 @@ Shout
 Inquiries
 --
 + title: String{NotBlank}
-+ dateOfCreation: Date{Temporal(TIMESTAMP),Past}
++ dateOfCreation: Date{Temporal(TIMESTAMP), NotNull, Past}
 + deadline: Date{Temporal(TIMESTAMP),Future}
 + description: String{NotBlank}
 + minMoney: Money{NotNull, Valid}
