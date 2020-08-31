@@ -12,9 +12,10 @@
 
 package acme.features.entrepreneur.application;
 
-
+import java.time.Month;
 import java.util.Collection;
-
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ import acme.framework.entities.Principal;
 import acme.framework.services.AbstractListService;
 
 @Service
-public class EntrepreneurApplicationListMineService implements AbstractListService<Entrepreneur, Application> {
+public class EntrepreneurApplicationListGroupedMineService implements AbstractListService<Entrepreneur, Application> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -68,7 +69,7 @@ public class EntrepreneurApplicationListMineService implements AbstractListServi
 		
 		
 
-		result = this.repository.findManyApplicationByEntrepreneurId(principal.getActiveRoleId());
+		result = this.repository.findManyApplicationByEntrepreneurIdGrouped(principal.getActiveRoleId());
 		
 		return result;
 	}

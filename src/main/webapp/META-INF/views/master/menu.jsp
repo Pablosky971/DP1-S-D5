@@ -85,7 +85,8 @@
 			<acme:menu-suboption code="master.menu.administrator.createInvestmentRound" action="/entrepreneur/investment-round/create"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.entrepreneur.application.list" action="/entrepreneur/application/list-mine" />
-
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.entrepreneur.application.listGroup" action="/entrepreneur/application/list-group" />
 		</acme:menu-option>
 	</acme:menu-left>
 
